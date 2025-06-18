@@ -648,16 +648,21 @@ h6 {
 
 /* Footer */
 .footer {
-    background-color: var(--warm-beige);
+    background-color: var(
+        --deep-forest
+    ); /* CHANGED: From warm-beige to deep-forest */
     padding-top: 64px; /* py-16 */
+    padding-bottom: 64px; /* Added for consistent padding */
     text-align: center;
-    color: rgba(38, 29, 20, 0.7); /* rich-bark/70 */
+    color: var(
+        --warm-beige
+    ); /* CHANGED: From rich-bark/70 to warm-beige for contrast */
 }
 
 .footer-logo {
     font-size: 2rem; /* text-2xl */
     font-weight: bold;
-    color: var(--deep-forest);
+    color: var(--warm-beige); /* CHANGED: From deep-forest to warm-beige */
     font-family: "Lora", serif;
     margin-bottom: 16px; /* mb-4 */
 }
@@ -675,7 +680,7 @@ h6 {
 }
 
 .footer-social-links a {
-    color: inherit; /* Inherit rich-bark/70 */
+    color: var(--warm-beige); /* CHANGED: From inherit to warm-beige */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -686,6 +691,7 @@ h6 {
 
 .footer-copyright {
     font-size: 0.875rem; /* text-sm */
+    color: rgba(237, 232, 229, 0.7); /* Added for clear readability */
 }
 
 /* Responsive adjustments using media queries */
