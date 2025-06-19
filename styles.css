@@ -142,7 +142,7 @@ h6 {
 }
 
 .mobile-menu {
-    display: none; /* hidden md:hidden */
+    /* display: none;  */
     background-color: var(--warm-beige);
     border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
     transition: max-height 0.3s ease;
@@ -688,9 +688,9 @@ h6 {
     .header-book-button {
         display: inline-block;
     }
-    .mobile-menu {
-        display: none !important; /* Ensure it stays hidden on md+ */
-    }
+    /* .mobile-menu {
+        display: none !important; 
+    } */
 
     .section-padding {
         padding-top: 128px; /* md:py-32 */

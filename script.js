@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mobile menu toggle
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener("click", () => {
+            console.log("Hamburger clicked");
             mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("show");
         });
     }
 
