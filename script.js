@@ -3,12 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenu = document.getElementById("mobile-menu");
     const header = document.getElementById("header");
     const navLinks = document.querySelectorAll(".main-nav-link");
-    const mobileNavLinks = document.querySelectorAll("#mobile-menu a");
+    const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
 
-    mobileMenuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-    });
+    // Mobile menu toggle
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    }
 
+    // Scroll behavior: sticky shadow & nav link highlighting
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
             header.classList.add("shadow-md");
@@ -16,11 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
             header.classList.remove("shadow-md");
         }
 
+        // Active link highlighting based on scroll position
         let currentSection = "";
         const sections = document.querySelectorAll("main section");
+
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
+            const sectionHeight = section.offsetHeight;
+            if (
+                window.scrollY >= sectionTop - 150 &&
+                window.scrollY < sectionTop + sectionHeight - 150
+            ) {
                 currentSection = section.getAttribute("id");
             }
         });
@@ -33,26 +43,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const allLinks = [
-        ...document.querySelectorAll(".main-nav-link"),
-        ...document.querySelectorAll("#mobile-menu a"),
-        ...document.querySelectorAll(".header-book-button"),
-        ...document.querySelectorAll(".hero-button"),
-        ...document.querySelectorAll(".class-card a"),
-        ...document.querySelectorAll(".select-plan-button"),
-        ...document.querySelectorAll(".contact-button"),
-        ...document.querySelectorAll(".cta-button"),
-    ];
-    allLinks.forEach((link) => {
+    // Smooth scroll + auto-close mobile menu on link click
+    allAnchorLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
-            if (link.getAttribute("href").startsWith("#")) {
-                const targetId = link.getAttribute("href");
-                if (document.querySelector(targetId)) {
-                    if (mobileMenu.classList.contains("hidden") === false) {
+            const href = link.getAttribute("href");
+
+            if (href.startsWith("#")) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+
+                    // Close mobile menu if open
+                    if (
+                        mobileMenu &&
+                        !mobileMenu.classList.contains("hidden")
+                    ) {
                         mobileMenu.classList.add("hidden");
                     }
                 }
             }
         });
     });
+
+    // Desktop fallback for SMS/Text button
+    const textButton = document.getElementById("text-monica");
+    if (textButton) {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (!isMobile) {
+            textButton.innerText = "Text Monica: (774) 392-3199";
+            textButton.setAttribute("href", "tel:7743923199");
+        }
+    }
 });

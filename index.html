@@ -37,14 +37,28 @@
                                 class="w-6 h-6"
                                 fill="none"
                                 stroke="currentColor"
-                                viewbox="0 0 24 24"
+                                viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
-                            ></svg>
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            </svg>
                         </button>
                     </div>
                 </div>
             </div>
             <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <a href="#about">About</a>
+                <a href="#instructor">Instructor</a>
+                <a href="#pricing">Classes</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="book-button-mobile">Book Now!</a>
+            </div>
         </header>
         <main>
             <!-- Hero -->
@@ -250,9 +264,13 @@
                             class="contact-button email"
                             >Email Monica</a
                         >
-                        <a href="tel:774-392-3199" class="contact-button text"
-                            >Text Monica</a
+                        <a
+                            id="text-monica"
+                            href="sms:7743923199"
+                            class="contact-button text"
                         >
+                            Text Monica
+                        </a>
                     </div>
                 </div>
             </section>
