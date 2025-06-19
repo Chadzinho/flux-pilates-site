@@ -351,43 +351,50 @@ h6 {
 }
 
 /* Instructors Section */
-.instructor-grid {
-    display: grid;
-    gap: 40px; /* gap-10 */
-    max-width: 800px; /* max-w-2xl */
-    margin-left: auto;
-    margin-right: auto;
+/* Removed .instructor-grid */
+/* Removed .instructor-card, replaced by new layout classes */
+
+.instructor-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.instructor-card {
+.instructor-text-side {
     text-align: center;
 }
 
-.instructor-card img {
-    width: 192px; /* w-48 */
-    height: 192px; /* h-48 */
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 9999px; /* rounded-full */
-    object-fit: cover;
-    margin-bottom: 16px; /* mb-4 */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+.instructor-image-side {
+    text-align: center;
 }
 
-.instructor-card h3 {
-    font-size: 1.25rem; /* text-xl */
+.instructor-portrait {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.instructor-text-side h3 {
+    font-size: 2rem;
     font-weight: 600;
     color: var(--deep-forest);
+    margin-bottom: 8px;
 }
 
-.instructor-card .subtitle {
+.instructor-text-side .subtitle {
     color: var(--soft-sky);
-    margin-bottom: 8px; /* mb-2 */
+    margin-bottom: 16px;
 }
 
-.instructor-card p {
-    color: rgba(38, 29, 20, 0.8); /* rich-bark/80 */
+.instructor-text-side p {
+    color: rgba(38, 29, 20, 0.8);
 }
 
 /* Pricing Section */
@@ -574,38 +581,6 @@ h6 {
     color: rgba(38, 29, 20, 0.7); /* rich-bark/70 */
 }
 
-/* Testimonials Section */
-.testimonials-grid {
-    display: grid;
-    gap: 32px; /* gap-8 */
-}
-
-.testimonial-card {
-    background-color: white;
-    padding: 32px; /* p-8 */
-    border-radius: 8px; /* rounded-lg */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-}
-
-.testimonial-card p {
-    color: rgba(38, 29, 20, 0.8); /* rich-bark/80 */
-    font-style: italic;
-    margin-bottom: 16px; /* mb-4 */
-}
-
-.testimonial-card span {
-    font-weight: 600;
-    color: var(
-        --deep-forest
-    ); /* Example: For highlighted words like 'alignment' */
-}
-
-.testimonial-author {
-    font-weight: 600;
-    color: var(--rich-bark);
-}
-
 /* Final CTA Section */
 .cta-section {
     background-color: var(--deep-forest);
@@ -728,16 +703,30 @@ h6 {
     .hero-subtitle {
         font-size: 1.5rem; /* md:text-2xl */
     }
-    .about-grid, /* Added .about-grid to this media query */
-    .philosophy-grid {
+    .about-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr)); /* md:grid-cols-3 */
     }
     .classes-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
     }
-    .instructor-grid {
-        grid-template-columns: repeat(1, minmax(0, 1fr)); /* md:grid-cols-1 */
+    .instructor-content-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 64px;
     }
+    .instructor-text-side {
+        flex: 1;
+        text-align: left;
+    }
+    .instructor-image-side {
+        flex: 0 0 auto;
+        text-align: right;
+    }
+    .instructor-portrait {
+        max-width: 400px;
+        height: 550px;
+    }
+
     /* MODIFIED: Pricing grid for medium screens */
     .pricing-grid {
         grid-template-columns: repeat(
