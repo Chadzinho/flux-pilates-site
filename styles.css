@@ -118,7 +118,7 @@ h6 {
 
 .header-book-button {
     display: none; /* hidden md:inline-block */
-    background-color: var(--soft-sky);
+    background-color: var(--deep-forest);
     color: white;
     font-weight: 600;
     padding: 8px 20px; /* px-5 py-2 */
@@ -195,11 +195,16 @@ h6 {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 24px; /* px-6 */
-    color: white;
+    color: var(--warm-beige);
+    background-image: url("studio-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 96px; /* Space for the header */
 }
 
 .hero-overlay {
@@ -215,6 +220,11 @@ h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
 }
 
 .hero-content {
@@ -223,24 +233,27 @@ h6 {
 }
 
 .hero-title {
+    color: var(--warm-beige);
     font-size: 3rem; /* text-5xl */
     font-weight: bold;
     font-family: "Lora", serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     margin-bottom: 16px;
 }
 
 .hero-subtitle {
     margin-top: 16px; /* mt-4 */
+    color: var(--warm-beige);
+    font-family: "Dancing Script", cursive;
     font-size: 1.25rem; /* text-xl */
     font-weight: light;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .hero-button {
     margin-top: 32px; /* mt-8 */
     display: inline-block;
-    background-color: var(--soft-sky);
+    background-color: var(--deep-forest);
     color: white;
     font-weight: 600;
     font-size: 1.125rem; /* text-lg */
@@ -281,6 +294,36 @@ h6 {
 }
 
 /* About Section */
+.about-content {
+    display: flex;
+    flex-direction: row; /* Set to row for a side-by-side layout on all screens */
+    align-items: center; /* This centers the text and image vertically */
+    gap: 3rem; /* md:gap-16 equivalent */
+    max-width: 900px;
+    margin: 0 auto; /* Center the container */
+    margin-bottom: 80px;
+}
+
+.about-text {
+    flex: 1;
+    text-align: left;
+}
+
+.about-img-side {
+    flex: 1;
+    text-align: center;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 400px;
+    height: 550px; /* NEW: Fixed height to match instructor portrait */
+    border-radius: 8px; /* MODIFIED: rounded-xl changed to 8px */
+    object-fit: cover;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 .about-grid {
     display: grid;
     gap: 48px; /* gap-12 */
@@ -294,15 +337,23 @@ h6 {
 }
 
 .about-icon {
-    font-size: 3rem; /* text-5xl */
-    color: var(--soft-sky);
-    margin-bottom: 16px; /* mb-4 */
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-icon-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .about-item h3 {
     font-size: 1.5rem; /* text-2xl */
     font-weight: 600;
     color: var(--deep-forest);
+    margin-top: 8px;
     margin-bottom: 8px; /* mb-2 */
 }
 
@@ -371,6 +422,7 @@ h6 {
 }
 
 .instructor-text-side {
+    margin-top: 0;
     text-align: center;
 }
 
@@ -389,15 +441,19 @@ h6 {
 }
 
 .instructor-text-side h3 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.25rem;
+    font-weight: 700;
     color: var(--deep-forest);
     margin-bottom: 8px;
+    text-align: right;
 }
 
 .instructor-text-side .subtitle {
+    font-size: 1.125rem;
+    font-weight: 600;
     color: var(--soft-sky);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    text-align: right;
 }
 
 .instructor-text-side p {
@@ -540,6 +596,64 @@ h6 {
     opacity: 0.9;
 }
 
+.class-img-container {
+    width: 100%;
+    /* Use a padding-bottom trick for a responsive aspect ratio */
+    padding-bottom: 75%; /* 4:3 aspect ratio, adjust as needed */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px; /* mb-4 equivalent */
+}
+
+.class-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is the key to uniform sizing */
+    border-radius: 8px; /* For rounded corners */
+}
+
+/* Testimonial Section */
+.testimonials-grid {
+    display: grid;
+    gap: 32px;
+}
+
+.testimonial-card {
+    background-color: white;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: relative;
+    padding-top: 60px;
+}
+
+.testimonial-card::before {
+    content: '"';
+    font-family: serif;
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--deep-forest);
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    line-height: 1;
+}
+
+.testimonial-card p {
+    color: rgba(38, 29, 20, 0.8);
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--rich-bark);
+}
+
 /* Contact Section */
 .contact-section {
     background-color: var(--warm-beige);
@@ -656,13 +770,19 @@ h6 {
 .footer-social-links {
     display: flex;
     justify-content: center;
-    gap: 24px; /* space-x-6 */
+    gap: 8px;
     margin-top: 24px; /* my-6 */
     margin-bottom: 24px;
 }
 
+.instagram-icon {
+    width: 32px;
+    height: 32px;
+    fill: currentColor; /* Inherits the color from the parent link */
+}
+
 .footer-social-links a {
-    color: var(--warm-beige); /* CHANGED: From inherit to warm-beige */
+    color: var(--warm-beige);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -707,6 +827,9 @@ h6 {
     .hero-title {
         font-size: 4.5rem; /* md:text-7xl */
     }
+    .hero-title br {
+        display: none;
+    }
     .hero-subtitle {
         font-size: 1.5rem; /* md:text-2xl */
     }
@@ -718,7 +841,8 @@ h6 {
     }
     .instructor-content-layout {
         flex-direction: row;
-        align-items: flex-start;
+        text-align: left;
+        align-items: center; /* ADDED: This centers the text and image vertically */
         gap: 64px;
     }
     .instructor-text-side {
@@ -726,14 +850,13 @@ h6 {
         text-align: left;
     }
     .instructor-image-side {
-        flex: 0 0 auto;
-        text-align: right;
+        flex: 1; /* UPDATED: Changed from `flex: 0 0 auto` to take up equal space */
+        text-align: center; /* UPDATED: Center the circular image within its container */
     }
     .instructor-portrait {
         max-width: 400px;
         height: 550px;
     }
-
     /* MODIFIED: Pricing grid for medium screens */
     .pricing-grid {
         grid-template-columns: repeat(
