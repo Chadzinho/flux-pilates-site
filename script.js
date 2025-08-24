@@ -1,83 +1,141 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const header = document.getElementById("header");
-    const navLinks = document.querySelectorAll(".main-nav-link");
-    const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+    // Cache DOM elements
+    const elements = {
+        mobileMenuButton: document.getElementById("mobile-menu-button"),
+        mobileMenu: document.getElementById("mobile-menu"),
+        header: document.getElementById("header"),
+        navLinks: document.querySelectorAll(".main-nav-link"),
+        allAnchorLinks: document.querySelectorAll('a[href^="#"]'),
+        textButton: document.getElementById("text-monica"),
+    };
+
+    // Configuration
+    const config = {
+        scrollOffset: 50,
+        sectionOffset: 150,
+        phoneNumber: "7743923199",
+    };
 
     // Mobile menu toggle
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener("click", () => {
-            console.log("Hamburger clicked");
-            mobileMenu.classList.toggle("hidden");
-            mobileMenu.classList.toggle("show");
+    function initMobileMenu() {
+        if (!elements.mobileMenuButton || !elements.mobileMenu) return;
+
+        elements.mobileMenuButton.addEventListener("click", () => {
+            elements.mobileMenu.classList.toggle("hidden");
+            elements.mobileMenu.classList.toggle("show");
         });
     }
 
-    // Scroll behavior: sticky shadow & nav link highlighting
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("shadow-md");
-        } else {
-            header.classList.remove("shadow-md");
-        }
+    // Scroll behavior handler
+    function handleScroll() {
+        const scrollY = window.scrollY;
 
-        // Active link highlighting based on scroll position
-        let currentSection = "";
+        // Header shadow
+        elements.header?.classList.toggle(
+            "shadow-md",
+            scrollY > config.scrollOffset
+        );
+
+        // Active navigation highlighting
+        updateActiveNavigation(scrollY);
+    }
+
+    function updateActiveNavigation(scrollY) {
         const sections = document.querySelectorAll("main section");
+        let currentSection = "";
 
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-            if (
-                window.scrollY >= sectionTop - 150 &&
-                window.scrollY < sectionTop + sectionHeight - 150
-            ) {
+            const isInViewport =
+                scrollY >= sectionTop - config.sectionOffset &&
+                scrollY < sectionTop + sectionHeight - config.sectionOffset;
+
+            if (isInViewport) {
                 currentSection = section.getAttribute("id");
             }
         });
 
-        navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href").substring(1) === currentSection) {
-                link.classList.add("active");
-            }
+        elements.navLinks.forEach((link) => {
+            const isActive =
+                link.getAttribute("href").substring(1) === currentSection;
+            link.classList.toggle("active", isActive);
         });
-    });
+    }
 
-    // Smooth scroll + auto-close mobile menu on link click
-    allAnchorLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-            const href = link.getAttribute("href");
+    // Smooth scroll with mobile menu auto-close
+    function initSmoothScroll() {
+        elements.allAnchorLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                const href = link.getAttribute("href");
 
-            if (href.startsWith("#")) {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                    });
+                if (href?.startsWith("#")) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
 
-                    // Close mobile menu if open
-                    if (
-                        mobileMenu &&
-                        !mobileMenu.classList.contains("hidden")
-                    ) {
-                        mobileMenu.classList.add("hidden");
+                        // Close mobile menu if open
+                        closeMobileMenu();
                     }
                 }
-            }
+            });
         });
-    });
+    }
 
-    // Desktop fallback for SMS/Text button
-    const textButton = document.getElementById("text-monica");
-    if (textButton) {
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (!isMobile) {
-            textButton.innerText = "Text Monica: (774) 392-3199";
-            textButton.setAttribute("href", "tel:7743923199");
+    function closeMobileMenu() {
+        if (
+            elements.mobileMenu &&
+            !elements.mobileMenu.classList.contains("hidden")
+        ) {
+            elements.mobileMenu.classList.add("hidden");
+            elements.mobileMenu.classList.remove("show");
         }
     }
+
+    // Device-specific text button handling
+    function initTextButton() {
+        if (!elements.textButton) return;
+
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (!isMobile) {
+            elements.textButton.textContent = `Text Monica: (774) 392-3199`;
+            elements.textButton.setAttribute(
+                "href",
+                `tel:${config.phoneNumber}`
+            );
+        }
+    }
+
+    // Throttle scroll events for better performance
+    function throttle(func, delay) {
+        let timeoutId;
+        let lastExecTime = 0;
+        return function (...args) {
+            const currentTime = Date.now();
+
+            if (currentTime - lastExecTime > delay) {
+                func.apply(this, args);
+                lastExecTime = currentTime;
+            } else {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    func.apply(this, args);
+                    lastExecTime = Date.now();
+                }, delay - (currentTime - lastExecTime));
+            }
+        };
+    }
+
+    // Initialize all functionality
+    initMobileMenu();
+    initSmoothScroll();
+    initTextButton();
+
+    // Use throttled scroll handler for better performance
+    window.addEventListener("scroll", throttle(handleScroll, 16)); // ~60fps
 });
