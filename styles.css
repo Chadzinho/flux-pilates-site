@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Higuen Elegant Serif";
+    src: url("fonts/Higuen-Elegant.woff2") format("woff2"),
+        url("fonts/Higuen-Elegant.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* This helps with performance */
+}
+
 :root {
     --deep-forest: #2f5848;
     --soft-sky: #79c0bc;
@@ -25,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lora", serif;
+    font-family: "Higuen Elegant Serif", serif;
     color: var(--deep-forest);
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -67,6 +76,7 @@ h6 {
 }
 
 .header-logo {
+    font-family: "Higuen Elegant Serif", serif;
     font-size: 2rem; /* text-2xl */
     font-weight: bold;
     color: var(--deep-forest);
@@ -236,7 +246,7 @@ h6 {
     color: var(--warm-beige);
     font-size: 3rem; /* text-5xl */
     font-weight: bold;
-    font-family: "Lora", serif;
+    font-family: "Higuen Elegant Serif", serif;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     margin-bottom: 16px;
 }
