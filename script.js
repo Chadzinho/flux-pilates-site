@@ -73,9 +73,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     const target = document.querySelector(href);
                     if (target) {
                         e.preventDefault();
-                        target.scrollIntoView({
+
+                        // Calculate header height and add some padding
+                        const headerHeight = elements.header
+                            ? elements.header.offsetHeight
+                            : 80;
+                        const targetPosition =
+                            target.offsetTop - headerHeight - 20; // 20px extra padding
+
+                        // Smooth scroll to calculated position
+                        window.scrollTo({
+                            top: Math.max(0, targetPosition), // Ensure we don't scroll above 0
                             behavior: "smooth",
-                            block: "start",
                         });
 
                         // Close mobile menu if open
