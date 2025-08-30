@@ -74,16 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (target) {
                         e.preventDefault();
 
-                        // Calculate header height and add some padding
+                        // Calculate header height precisely
                         const headerHeight = elements.header
                             ? elements.header.offsetHeight
-                            : 80;
+                            : 56;
+
+                        // Get the exact position to scroll to
                         const targetPosition =
-                            target.offsetTop - headerHeight - 20; // 20px extra padding
+                            target.getBoundingClientRect().top +
+                            window.pageYOffset -
+                            headerHeight -
+                            8;
 
                         // Smooth scroll to calculated position
                         window.scrollTo({
-                            top: Math.max(0, targetPosition), // Ensure we don't scroll above 0
+                            top: Math.max(0, targetPosition),
                             behavior: "smooth",
                         });
 

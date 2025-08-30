@@ -58,7 +58,6 @@ h6 {
     z-index: 50;
     transition: box-shadow 0.3s ease;
     padding-top: 8px;
-    padding-bottom: 8px;
     min-height: 48px;
     max-height: 56px;
 }
@@ -80,7 +79,7 @@ h6 {
     white-space: nowrap;
     gap: 8px;
     font-family: "Higuen Elegant Serif", serif;
-    font-size: clamp(1.125rem, 3vw, 1.5rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: bold;
     color: var(--deep-forest);
     text-decoration: none;
@@ -300,6 +299,10 @@ h6 {
 }
 
 /* Section Common Styles */
+section {
+    scroll-margin-top: 64px; /* Adjust based on your header height + 8px */
+}
+
 .section-padding {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -797,8 +800,8 @@ h6 {
 
     /* Larger section padding */
     .section-padding {
-        padding-top: 128px;
-        padding-bottom: 128px;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 
     /* Hero adjustments */
