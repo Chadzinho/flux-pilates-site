@@ -4,7 +4,7 @@
         url("./fonts/Higuen-Elegant.woff") format("woff");
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* This helps with performance */
+    font-display: swap;
 }
 
 :root {
@@ -35,7 +35,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Higuen Elegant Serif", serif;
+    font-family: "Higuen Elegant Serif", "Abril Fatface", serif;
     color: var(--deep-forest);
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -57,8 +57,10 @@ h6 {
     top: 0;
     z-index: 50;
     transition: box-shadow 0.3s ease;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 48px;
+    max-height: 56px;
 }
 
 .header.shadow-md {
@@ -75,17 +77,18 @@ h6 {
 .header-logo {
     display: flex;
     align-items: center;
+    white-space: nowrap;
     gap: 8px;
     font-family: "Higuen Elegant Serif", serif;
-    font-size: 2rem;
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
     font-weight: bold;
     color: var(--deep-forest);
     text-decoration: none;
 }
 
 .header-logo img {
-    height: 100px;
-    width: auto;
+    height: 40px;
+    width: 40px;
 }
 
 /* Mobile-first navigation - hidden by default */
@@ -166,13 +169,23 @@ h6 {
 .mobile-menu {
     background-color: var(--warm-beige);
     border-top: 1px solid #e5e7eb;
-    transition: max-height 0.3s ease;
+    transition: all 0.3s ease;
     overflow: hidden;
     max-height: 0;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-menu.show {
     max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu.hidden {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-menu a {
@@ -219,7 +232,7 @@ h6 {
     align-items: center;
     text-align: center;
     color: var(--warm-beige);
-    background-image: url("photos/studio-hero.jpg");
+    background-image: url("./photos/studio-hero.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -251,10 +264,11 @@ h6 {
 
 .hero-title {
     color: var(--warm-beige);
-    font-size: 3rem;
+    font-size: clamp(3rem, 8vw, 4.5rem);
     font-weight: bold;
     font-family: "Higuen Elegant Serif", serif;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.5),
+        0 6px 18px rgba(0, 0, 0, 0.4);
     margin-bottom: 16px;
 }
 
@@ -262,7 +276,7 @@ h6 {
     margin-top: 16px;
     color: var(--warm-beige);
     font-family: "Lora", cursive;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.5rem);
     font-weight: light;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
@@ -293,12 +307,13 @@ h6 {
 
 .section-header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 12px;
 }
 
 .section-title {
-    font-size: 2.25rem;
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
     font-weight: bold;
+    white-space: nowrap;
     margin-bottom: 2px;
 }
 
@@ -379,10 +394,60 @@ h6 {
 .instructor-content-layout {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    max-width: 900px;
+    gap: 24px;
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.instructor-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.instructor-header-text {
+    text-align: right;
+    flex: 1;
+}
+
+.instructor-header-text h3 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+    color: var(--deep-forest);
+}
+
+.instructor-header-text .subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--soft-sky);
+    margin-bottom: 0;
+}
+
+.instructor-image-mobile {
+    flex-shrink: 0;
+}
+
+.instructor-portrait-mobile {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.instructor-image-desktop {
+    display: none;
+}
+
+.instructor-header-row .instructor-portrait {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .instructor-text-side {
@@ -403,22 +468,14 @@ h6 {
         0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.instructor-text-side h3 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--deep-forest);
-    margin-bottom: 8px;
-}
-
-.instructor-text-side .subtitle {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--soft-sky);
-    margin-bottom: 24px;
+.instructor-text-side {
+    text-align: left;
+    width: 100%;
 }
 
 .instructor-text-side p {
     color: rgba(38, 29, 20, 0.8);
+    margin-bottom: 16px;
 }
 
 /* Pricing Section */
@@ -765,34 +822,57 @@ h6 {
     /* Instructor layout */
     .instructor-content-layout {
         flex-direction: row;
-        text-align: left;
-        align-items: center;
+        align-items: flex-start;
         gap: 64px;
     }
 
-    .instructor-text-side {
+    .instructor-text-content {
         flex: 1;
-        text-align: left;
     }
 
-    .instructor-image-side {
-        flex: 1;
-        text-align: center;
+    .instructor-header-row {
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 24px;
+        justify-content: flex-start;
     }
 
-    .instructor-portrait {
+    .instructor-header-text {
+        text-align: right;
+        width: 100%;
+    }
+
+    .instructor-header-text h3 {
+        font-size: 2.5rem;
+    }
+
+    .instructor-header-text .subtitle {
+        font-size: 1.125rem;
+    }
+
+    .instructor-image-mobile {
+        display: none;
+    }
+
+    .instructor-image-desktop {
+        display: block;
+        flex: 1;
         max-width: 400px;
+    }
+
+    .instructor-portrait-desktop {
+        width: 100%;
         height: 550px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
-    .instructor-text-side h3 {
-        text-align: right;
+    .instructor-text-side {
+        text-align: left;
+        width: 100%;
     }
-
-    .instructor-text-side .subtitle {
-        text-align: right;
-    }
-
     /* Pricing grid - 2 columns */
     .pricing-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));

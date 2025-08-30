@@ -3,8 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Flux Pilates</title>
-        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <title>Flux Pilates - Sherborn, MA</title>
+        <meta
+            name="description"
+            content="Professional Pilates instruction in Sherborn, MA. Private sessions, duo classes, and packages with Monica, certified instructor with 40+ years experience."
+        />
+
+        <link
+            rel="preload"
+            href="./fonts/Higuen-Elegant.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link rel="preload" href="./photos/studio-hero.jpg" as="image" />
+
         <link
             href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
             rel="stylesheet"
@@ -58,6 +71,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="mobile-menu hidden">
                 <a href="#about">About</a>
@@ -67,7 +81,7 @@
                 <a href="#contact" class="book-button-mobile">Book Now!</a>
             </div>
         </header>
-        <main>
+        <main id="main">
             <!-- Section 1: Hero -->
             <section id="home" class="hero-section">
                 <div class="hero-overlay"></div>
@@ -88,6 +102,7 @@
                     >
                 </div>
             </section>
+
             <!-- Section 2: About -->
             <section id="about" class="section-padding">
                 <div class="container">
@@ -113,6 +128,7 @@
                                 src="photos/about-flux.jpg"
                                 alt="Monica with a client"
                                 class="about-img"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -123,6 +139,7 @@
                                     src="photos/alignment.jpg"
                                     alt="Monica using the reformer machine"
                                     class="about-icon-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -137,9 +154,10 @@
                         <div class="about-item">
                             <div class="about-icon">
                                 <img
-                                    src="photos/flexibility.jpg"
+                                    src="./photos/flexibility.jpg"
                                     alt="Monica stretching with a client"
                                     class="about-icon-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -154,9 +172,10 @@
                         <div class="about-item">
                             <div class="about-icon">
                                 <img
-                                    src="photos/deep-core.jpg"
+                                    src="./photos/deep-core.jpg"
                                     alt="Monica supporting a client during workout"
                                     class="about-icon-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -170,47 +189,64 @@
                     </div>
                 </div>
             </section>
+
             <!-- Instructor -->
             <section id="instructor" class="section-padding">
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Meet Your Instructor</h2>
-                        <p class="section-description"></p>
                     </div>
                     <div class="instructor-content-layout">
-                        <div class="instructor-text-side">
-                            <h3>Monica</h3>
-                            <p class="subtitle">
-                                Owner & Certified Pilates Instructor
-                            </p>
-                            <p>
-                                Monica, the owner of Flux, is a Barre and
-                                Pilates certified instructor who has been
-                                teaching movement for over 40 years. She is
-                                Stott Pilates trained in mat, reformer, barrels,
-                                stability chair, and special populations. She
-                                has successfully co-owned Osterville Pilates for
-                                10 years in Cape Cod, MA.
-                            </p>
-                            <p>
-                                Flux Pilates in Sherborn is her dream come true,
-                                a well-equipped studio that provides a unique
-                                and individualized experience to each client,
-                                with the common goals of spine mobility,
-                                stability, and balance, improved range of
-                                motion, and deep core strength.
-                            </p>
+                        <div class="instructor-text-content">
+                            <div class="instructor-header-row">
+                                <div class="instructor-header-text">
+                                    <h3>Monica</h3>
+                                    <p class="subtitle">
+                                        Owner & Certified Pilates Instructor
+                                    </p>
+                                </div>
+                                <div class="instructor-image-mobile">
+                                    <img
+                                        src="./photos/instructor-image.jpg"
+                                        alt="Portrait of Monica, owner and lead instructor of Flux Pilates"
+                                        class="instructor-portrait-mobile"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            </div>
+                            <div class="instructor-text-side">
+                                <p>
+                                    Monica, the owner of Flux, is a Barre and
+                                    Pilates certified instructor who has been
+                                    teaching movement for over 40 years. She is
+                                    Stott Pilates trained in mat, reformer,
+                                    barrels, stability chair, and special
+                                    populations. She has successfully co-owned
+                                    Osterville Pilates for 10 years in Cape Cod,
+                                    MA.
+                                </p>
+                                <p>
+                                    Flux Pilates in Sherborn is her dream come
+                                    true, a well-equipped studio that provides a
+                                    unique and individualized experience to each
+                                    client, with the common goals of spine
+                                    mobility, stability, and balance, improved
+                                    range of motion, and deep core strength.
+                                </p>
+                            </div>
                         </div>
-                        <div class="instructor-image-side">
+                        <div class="instructor-image-desktop">
                             <img
-                                src="photos/instructor-image.jpg"
+                                src="./photos/instructor-image.jpg"
                                 alt="Portrait of Monica, owner and lead instructor of Flux Pilates"
-                                class="instructor-portrait"
+                                class="instructor-portrait-desktop"
+                                loading="lazy"
                             />
                         </div>
                     </div>
                 </div>
             </section>
+
             <!-- Classes and Pricing -->
             <section id="pricing" class="section-padding pricing-section">
                 <div class="container">
@@ -228,9 +264,10 @@
                             <h3>Private <br />Session</h3>
                             <div class="class-img-container">
                                 <img
-                                    src="photos/private-session.jpg"
+                                    src="./photos/private-session.jpg"
                                     alt="Monica working with a client one-on-one"
                                     class="class-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -249,9 +286,10 @@
                             <h3>Duo <br />Session</h3>
                             <div class="class-img-container">
                                 <img
-                                    src="photos/duo-session.jpg"
+                                    src="./photos/duo-session.jpg"
                                     alt="Monica helping a client use the reformer machine"
                                     class="class-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -273,9 +311,10 @@
                             <h3>10 Session <br />Package</h3>
                             <div class="class-img-container">
                                 <img
-                                    src="photos/ten-session.jpg"
+                                    src="./photos/ten-session.jpg"
                                     alt="Monica working with the reformer machine"
                                     class="class-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -294,9 +333,10 @@
                             <h3>5 Session <br />Package</h3>
                             <div class="class-img-container">
                                 <img
-                                    src="photos/five-session.jpg"
+                                    src="./photos/five-session.jpg"
                                     alt="Monica helping a client to stretch"
                                     class="class-img"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -318,7 +358,7 @@
             <!-- Testimonials -->
             <section id="testimonials" class="section-padding">
                 <div class="container">
-                    <h2 class="section-header">Testimonials</h2>
+                    <h2 class="section-title">Testimonials</h2>
                     <!-- <p class="section-description">
                         Hear from some of Flux's satisfied clients
                     </p> -->
